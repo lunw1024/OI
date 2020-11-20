@@ -70,7 +70,7 @@ pii lca(int a, int b) {
     return make_pair(a, a_);
 }
 
-void notifyFJ(int a, int b){
+void notifyFJ(int a, int b) {
     pii p = lca(a, b);
     int c = p.first, d = p.second;
     if (c == a || c == b)
