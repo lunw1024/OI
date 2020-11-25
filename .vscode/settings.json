@@ -1,0 +1,13 @@
+{
+    "code-runner.fileDirectoryAsCwd": true,
+    "code-runner.saveAllFilesBeforeRun": true,
+    "code-runner.saveFileBeforeRun": true,
+    "code-runner.runInTerminal": true,
+    "editor.fontSize": 18,
+    "editor.fontFamily": "'Jetbrains Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    "code-runner.ignoreSelection": true,
+    "code-runner.executorMap": {
+        "cpp": "cd $dir && g++ $fileName -o $workspaceRoot/run -std=c++14 -I $workspaceRoot/lib/ && $workspaceRoot/run",
+        "python": "python -u",
+    },
+}
