@@ -7,7 +7,7 @@
     "editor.fontFamily": "'Jetbrains Mono', 'monospace', monospace, 'Droid Sans Fallback'",
     "code-runner.ignoreSelection": true,
     "code-runner.executorMap": {
-        "cpp": "cd $dir && g++ $fileName -o $workspaceRoot/run -std=c++14 -I $workspaceRoot/lib/ && $workspaceRoot/run",
+        "cpp": "cd $dir && g++ $fileName -o $workspaceRoot/run -std=c++20 -I $workspaceRoot/lib/ && $workspaceRoot/run",
         "python": "python -u",
     },
 }
