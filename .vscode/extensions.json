@@ -6,6 +6,8 @@
 	"recommendations": [
 		"formulahendry.code-runner",
 		"ms-vscode.cpptools",
+		"ms-python.python",
+		"ms-python.vscode-pylance",
 	],
 	// List of extensions recommended by VS Code that should not be recommended for users of this workspace.
 	"unwantedRecommendations": [
