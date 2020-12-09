@@ -15,4 +15,7 @@
     "code-runner.enableAppInsights": false,
     "code-runner.preserveFocus": false,
     "code-runner.customCommand": "cd $workspaceRoot && ./expander.py $fullFileName --lib ./lib",
+    "files.associations": {
+        "iomanip": "cpp"
+    },
 }
