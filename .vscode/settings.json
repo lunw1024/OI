@@ -18,4 +18,5 @@
     "files.associations": {
         "iomanip": "cpp"
     },
+    "workbench.colorTheme": "Default Dark+",
 }
