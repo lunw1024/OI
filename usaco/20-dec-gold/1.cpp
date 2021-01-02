@@ -1,10 +1,8 @@
 #include <iostream>
-#include <atcoder/all>
 #include <queue>
 #include <utility>
 #include <vector>
 using namespace std;
-using namespace atcoder;
 using pii = pair<int, int>;
 
 const int INF = (int)1e9;
@@ -101,19 +99,18 @@ int main() {
         } 
     }
 
-    for (int i = 0; i < N; i++) {
-        for (int j = 0; j < N; j++) {
-            // cout << (dp[i][j] == INF ? -1 : dp[i][j]) << " ";
-            cout << ans[i][j]; 
-        }
-        cout << endl;
-    }
-
-    for (int d = N / 2; d >= 1; d--) {
-        cout << d << ": " << endl;
-        for (pii e : srcs[d])
-            cout << e.first << " " << e.second << endl;
-    }
+/*     for (int i = 0; i < N; i++) {
+ *         for (int j = 0; j < N; j++) {
+ *             // cout << (dp[i][j] == INF ? -1 : dp[i][j]) << " ";
+ *             cout << ans[i][j];
+ *         }
+ *         cout << endl;
+ *     }
+ *
+ *     for (int d = N / 2; d >= 1; d--) {
+ *         cout << d << ": " << endl;
+ *         for (pii e : srcs[d])
+ *             cout << e.first << " " << e.second << endl;
+ *     } */
     cout << out << endl;
 }
-
