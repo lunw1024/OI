@@ -2,8 +2,7 @@
     "code-runner.saveAllFilesBeforeRun": true,
     "code-runner.saveFileBeforeRun": true,
     "code-runner.runInTerminal": true,
-    "editor.fontSize": 18,
-    "editor.fontFamily": "'Jetbrains Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    "editor.fontFamily": "'Jetbrains Mono', monospace",
     "code-runner.ignoreSelection": true,
     "code-runner.executorMap": {
 
@@ -16,7 +15,8 @@
     "code-runner.preserveFocus": false,
     "code-runner.customCommand": "cd $workspaceRoot && ./expander.py $fullFileName --lib ./lib",
     "files.associations": {
-        "iomanip": "cpp"
+        "iomanip": "cpp",
+        "ostream": "cpp"
     },
     "workbench.colorTheme": "Default Dark+",
 }

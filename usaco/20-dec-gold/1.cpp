@@ -64,7 +64,8 @@ int main() {
             int nx = x + dx[i], ny = y + dy[i];
             if (legal(nx, ny) && dp[nx][ny] == INF && dist[nx][ny] > dp[x][y] / D) {
                 dp[nx][ny] = dp[x][y] + 1;
-                que.push(make_pair(nx, ny));
+                if (dist[nx][ny] > dp[nx][ny] / D)
+                    que.push(make_pair(nx, ny));
                 srcs[dist[nx][ny]].push_back(make_pair(nx, ny));
                 ans[nx][ny] = true;
             }
@@ -101,8 +102,8 @@ int main() {
 
 /*     for (int i = 0; i < N; i++) {
  *         for (int j = 0; j < N; j++) {
- *             // cout << (dp[i][j] == INF ? -1 : dp[i][j]) << " ";
- *             cout << ans[i][j];
+ *             cout << (dp[i][j] == INF ? -1 : dp[i][j]) << " ";
+ *             // cout << ans[i][j];
  *         }
  *         cout << endl;
  *     }
