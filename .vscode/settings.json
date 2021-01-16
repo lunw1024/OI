@@ -16,7 +16,8 @@
     "code-runner.customCommand": "cd $workspaceRoot && ./expander.py $fullFileName --lib ./lib",
     "files.associations": {
         "iomanip": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "vector": "cpp"
     },
     "workbench.colorTheme": "Default Dark+",
 }
