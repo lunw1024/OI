@@ -17,7 +17,9 @@
     "files.associations": {
         "iomanip": "cpp",
         "ostream": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "bit": "cpp",
+        "cmath": "cpp"
     },
     "workbench.colorTheme": "Default Dark+",
 }
