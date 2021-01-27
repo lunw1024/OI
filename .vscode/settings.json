@@ -19,7 +19,8 @@
         "ostream": "cpp",
         "vector": "cpp",
         "bit": "cpp",
-        "cmath": "cpp"
+        "cmath": "cpp",
+        "iostream": "cpp"
     },
     "workbench.colorTheme": "Default Dark+",
 }
