@@ -1,3 +1,0 @@
-[expand-file-with-ac-library]
-    command = './expander.py'
-    args = ['${file}', '--lib ./lib']

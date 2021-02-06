@@ -20,7 +20,14 @@
         "vector": "cpp",
         "bit": "cpp",
         "cmath": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "*.tcc": "cpp",
+        "deque": "cpp",
+        "forward_list": "cpp",
+        "list": "cpp",
+        "string": "cpp",
+        "valarray": "cpp",
+        "all": "cpp"
     },
     "workbench.colorTheme": "Default Dark+",
 }

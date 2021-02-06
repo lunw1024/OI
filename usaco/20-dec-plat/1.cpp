@@ -45,12 +45,13 @@ int main() {
             j++;
         }
     }
-    vector<vector<int>> dp(N + 1, vector<int>(2)), ndp(N + 1, vector<int>(2));
+    vector<vector<ll>> dp(N + 1, vector<ll>(2)), ndp(N + 1, vector<ll>(2));
     dp[0][0] = 1;
     for (bool e : events) {
         // clear
         for (int i = 0; i <= N; i++)
             ndp[i][0] = 0, ndp[i][1] = 0;
+        // dp according to the comments above
         if (!e) { // cow
             for (int i = 1; i <= N; i++) {
                 ndp[i][0] += dp[i - 1][0];
@@ -66,7 +67,7 @@ int main() {
             ndp[0][1] -= ndp[0][1] >= MOD ? MOD : 0;
             ndp[0][1] += dp[0][1];
             ndp[0][1] -= ndp[0][1] >= MOD ? MOD : 0;
-        } else {
+        } else { // barn
             for (int i = 0; i < N; i++) {
                 ndp[i][0] += ll(i + 1) * dp[i + 1][0] % MOD;
                 ndp[i][0] -= ndp[i][0] >= MOD ? MOD : 0;
