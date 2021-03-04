@@ -27,7 +27,8 @@
         "list": "cpp",
         "string": "cpp",
         "valarray": "cpp",
-        "all": "cpp"
+        "all": "cpp",
+        "algorithm": "cpp"
     },
     "workbench.colorTheme": "Default Dark+",
 }
