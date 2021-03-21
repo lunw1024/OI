@@ -28,7 +28,8 @@
         "string": "cpp",
         "valarray": "cpp",
         "all": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "cassert": "cpp"
     },
     "workbench.colorTheme": "Default Dark+",
 }
