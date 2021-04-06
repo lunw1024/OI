@@ -2,15 +2,12 @@
     "code-runner.saveAllFilesBeforeRun": true,
     "code-runner.saveFileBeforeRun": true,
     "code-runner.runInTerminal": true,
-    "editor.fontFamily": "'Jetbrains Mono', monospace",
     "code-runner.ignoreSelection": true,
     "code-runner.executorMap": {
-
         "cpp": "cd $dir && g++ $fileName -o $workspaceRoot/run -std=c++17 -I $workspaceRoot/lib/ && $workspaceRoot/run",
         "python": "python -u",
     },
     "python.languageServer": "Pylance",
-    "editor.fontLigatures": true,
     "code-runner.enableAppInsights": false,
     "code-runner.preserveFocus": false,
     "code-runner.customCommand": "cd $workspaceRoot && ./expander.py $fullFileName --lib ./lib",
@@ -31,5 +28,4 @@
         "algorithm": "cpp",
         "cassert": "cpp"
     },
-    "workbench.colorTheme": "Default Dark+",
 }
