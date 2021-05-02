@@ -36,7 +36,7 @@
 		"prefix": "BIT",
 		"body": [
 			"struct BIT {",
-			"    int n",
+			"    int n;",
 			"    vector<int> data;",
 			"    BIT(int n) {",
 			"        this->n = n;",
@@ -85,5 +85,31 @@
 			"    }",
 			"};"
 		],
+	},
+	"Euler Sieve": {
+		"prefix": "Sieve",
+		"body": [
+			"struct Sieve {",
+			"    int n;",
+			"    vector<int> isprime, prime;",
+			"    Sieve(int n) {",
+			"        this->n = n;",
+			"        isprime.resize(n, true);",
+			"        for (int i = 2; i < n; i++) {",
+			"            if (isprime[i]) {",
+			"                prime.push_back(i);",
+			"            }",
+			"            for (int j : prime) {",
+			"                if (1ll * i * j >= n)",
+			"                    break;",
+			"                isprime[i * j] = false;",
+			"                if (i % j == 0)",
+			"                    break;",
+			"            }",
+			"        }",
+			"    }",
+			"};"
+		],
+		"description": "Euler Sieve"
 	}
 }
