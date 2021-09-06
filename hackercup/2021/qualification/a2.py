@@ -1,4 +1,5 @@
-# shit should've looked at a2 first
+# https://www.facebook.com/codingcompetitions/hacker-cup/2021/qualification-round/problems/A2
+# shoot should've looked at a2 first
 import numpy as np
 from icecream import ic
 

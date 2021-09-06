@@ -1,3 +1,4 @@
+# https://projecteuler.net/problem=66
 from sympy.ntheory.primetest import is_square
 from tqdm import trange
 from icecream import ic
@@ -6,6 +7,7 @@ INF = int(1e9)
 ans = 1
 maximum = 0
 
+# https://en.wikipedia.org/wiki/Pell%27s_equation
 def check(l, d):
     if len(l) == 0:
         return False

@@ -29,4 +29,7 @@
         "cassert": "cpp",
         "random": "cpp"
     },
+    "files.watcherExclude": {
+        "**/.venv/**": true
+    },
 }

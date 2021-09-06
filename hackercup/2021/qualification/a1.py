@@ -1,4 +1,4 @@
-
+# https://www.facebook.com/codingcompetitions/hacker-cup/2021/qualification-round/problems/A1
 n = int(input())
 vowels = set(["A", "E", "I", "O", "U"])
 consonants = set(chr(c) for c in range(ord("A"), ord("Z") + 1)) - vowels
@@ -12,4 +12,4 @@ for i in range(1, n + 1):
     b = len(arr) * 2 - sum(arr) - b * 2
     print(f"Case #{i}: {min(a, b)}")
 
-    
+        
