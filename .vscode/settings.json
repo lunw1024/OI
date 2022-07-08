@@ -13,7 +13,7 @@
     "python.languageServer": "Pylance",
     "code-runner.enableAppInsights": false,
     "code-runner.preserveFocus": false,
-    "code-runner.customCommand": "cd $workspaceRoot && ./expander.py $fullFileName --lib ./lib",
+    "code-runner.customCommand": "cd $workspaceRoot && ./lib/expander.py $fullFileName --lib ./lib",
     "files.watcherExclude": {
         "**/.venv/**": true
     },
