@@ -5,7 +5,7 @@
     "code-runner.ignoreSelection": true,
     "code-runner.executorMap": {
         // fast
-        "cpp": "cd $dir && g++ $fileName -o run -std=c++20 -I $workspaceRoot/lib/ -O2 -Wall -Wextra -Wshadow -Wfloat-equal -Wconversion -Wlogical-op -Wshift-overflow=2 -Wduplicated-cond -Wno-sign-compare && ./run ; rm run",
+        "cpp": "cd $dir && g++ $fileName -o run -std=c++17 -I $workspaceRoot/lib/ -O2 -Wall -Wextra -Wshadow -Wfloat-equal -Wconversion -Wlogical-op -Wshift-overflow=2 -Wduplicated-cond -Wno-sign-compare && ./run ; rm run",
         // slow, use when WA
         // "cpp": "cd $dir && g++ $fileName -o run -std=c++20 -I $workspaceRoot/lib/ -O2 -Wall -Wextra -Wshadow -Wfloat-equal -Wconversion -Wlogical-op -Wshift-overflow=2 -Wduplicated-cond -Wno-sign-compare -D_GLIBCXX_DEBUG -fsanitize=address -fsanitize=undefined && ./run ; rm run",
         "python": "python -u",
@@ -17,7 +17,7 @@
     "files.watcherExclude": {
         "**/.venv/**": true
     },
-    "C_Cpp.default.cppStandard": "c++20",
+    "C_Cpp.default.cppStandard": "c++17",
     "C_Cpp.default.cStandard": "c17",
     "C_Cpp.default.includePath": [
         "${workspaceFolder}/lib"
@@ -36,6 +36,7 @@
         "ranges": "cpp",
         "span": "cpp",
         "regex": "cpp",
-        "valarray": "cpp"
+        "valarray": "cpp",
+        "ostream": "cpp"
     },
 }
