@@ -17,26 +17,20 @@
     "files.watcherExclude": {
         "**/.venv/**": true
     },
-    "C_Cpp.default.cppStandard": "c++17",
+    "C_Cpp.default.cppStandard": "c++20",
     "C_Cpp.default.cStandard": "c17",
     "C_Cpp.default.includePath": [
         "${workspaceFolder}/lib"
     ],
     "files.associations": {
-        "array": "cpp",
-        "deque": "cpp",
-        "forward_list": "cpp",
-        "list": "cpp",
-        "string": "cpp",
-        "unordered_map": "cpp",
-        "unordered_set": "cpp",
-        "vector": "cpp",
-        "string_view": "cpp",
-        "initializer_list": "cpp",
-        "ranges": "cpp",
-        "span": "cpp",
-        "regex": "cpp",
+        "cmath": "cpp",
+        "complex": "cpp",
+        "iostream": "cpp",
+        "ostream": "cpp",
+        "chrono": "cpp",
+        "random": "cpp",
+        "limits": "cpp",
         "valarray": "cpp",
-        "ostream": "cpp"
+        "algorithm": "cpp"
     },
 }
