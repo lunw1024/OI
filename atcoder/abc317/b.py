@@ -1,0 +1,5 @@
+n = int(input())
+a = list(map(int, input().split()))
+x, y = min(a), max(a)
+s = sum(a)
+print((x + y) * (n + 1) // 2 - s)
