@@ -4,6 +4,7 @@
     "code-runner.runInTerminal": true,
     "code-runner.ignoreSelection": true,
     "code-runner.executorMap": {
+
         // fast
         "cpp": "cd $dir && g++ $fileName -o run -std=c++17 -I $workspaceRoot/lib/ -O2 -Wall -Wextra -Wshadow -Wfloat-equal -Wconversion -Wlogical-op -Wshift-overflow=2 -Wduplicated-cond -Wno-sign-compare && ./run ; rm run",
         // slow, use when WA
@@ -23,15 +24,6 @@
         "${workspaceFolder}/lib"
     ],
     "files.associations": {
-        "cmath": "cpp",
-        "complex": "cpp",
-        "iostream": "cpp",
-        "ostream": "cpp",
-        "chrono": "cpp",
-        "random": "cpp",
-        "limits": "cpp",
-        "valarray": "cpp",
-        "algorithm": "cpp",
-        "vector": "cpp"
-    },
+        "iostream": "cpp"
+    }
 }
