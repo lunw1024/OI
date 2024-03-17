@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Check if a file name is provided
+if [ "$#" -ne 1 ]; then
+    echo "Usage: $0 <filename.cpp>"
+    exit 1
+fi
+
+# Compile the C++ file
+g++ -std=c++17 $1 -o program -O2 -Wall -Wextra -Wshadow -Wfloat-equal -Wconversion -Wlogical-op -Wshift-overflow=2 -Wduplicated-cond -Wno-sign-compare -D_GLIBCXX_DEBUG -fsanitize=address -fsanitize=undefined -fno-sanitize-recover
+
+# Check if compilation was successful
+if [ $? -eq 0 ]; then
+    # Run the compiled program
+    ./program
+    # Remove the compiled program after execution
+    rm program
+else
+    echo "Compilation failed."
+fi

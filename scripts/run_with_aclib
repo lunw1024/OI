@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# Check if a file name is provided
+if [ "$#" -ne 1 ]; then
+    echo "Usage: $0 <filename.cpp>"
+    exit 1
+fi
+
+# Locate the root work directory by finding the .git folder
+root_dir=$(git rev-parse --show-toplevel)
+
+# Check if the root directory was found
+if [ -z "$root_dir" ]; then
+    echo "Error: .git directory not found. Make sure you are inside a git repository."
+    exit 1
+fi
+
+# Define the path to the AtCoder library
+atcoder_lib_path="$root_dir/lib/"
+
+# Compile the C++ file with C++17 standard and include the AtCoder library
+g++ -std=c++17 $1 -o program -I "$atcoder_lib_path" -O2 -Wall -Wextra -Wshadow -Wfloat-equal -Wconversion -Wlogical-op -Wshift-overflow=2 -Wduplicated-cond -Wno-sign-compare
+
+# Check if compilation was successful
+if [ $? -eq 0 ]; then
+    # Run the compiled program
+    ./program
+    # Remove the compiled program after execution
+    rm program
+else
+    echo "Compilation failed."
+fi

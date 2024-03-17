@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Find the root git directory
+root_dir=$(git rev-parse --show-toplevel)
+
+# Check if root_dir is non-empty
+if [ -n "$root_dir" ]; then
+  # Add root_dir/scripts/ to PATH
+  export PATH="$root_dir/scripts:$PATH"
+else
+  echo "Not inside a Git repository."
+fi
+
