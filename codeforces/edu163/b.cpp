@@ -18,7 +18,7 @@ int main() {
       if (a[i] <= m) {
         m = a[i];
       } else {
-        if (a[i] >= 10 && a[i] / 10 <= a[i] % 10) {
+        if (a[i] >= 10 && a[i] / 10 <= a[i] % 10 && a.at(i) % 10 <= m) {
           m = a[i] / 10;
         } else {
           ok = false;
