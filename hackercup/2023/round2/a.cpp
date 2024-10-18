@@ -59,13 +59,16 @@ int main() {
     cin >> T;
     for (int t = 0; t < T; t++) {
         cin >> R >> C;
+        board.clear();
         board.resize(R + 2, vector<char>(C + 2));
+        cnt.clear();
         cnt.resize(R + 2, vector<int>(C + 2));
         vis.clear();
         vis.resize(R + 2, vector<bool>(C + 2));
         int ans = 0;
         for (int i = 0; i <= R + 1; i++) {
             for (int j = 0; j <= C + 1; j++) {
+                // cerr << i << ", " << j << endl;
                 if (i == 0 || j == 0 || i == R + 1 || j == C + 1) {
                     board[i][j] = 'B';
                 } else {
@@ -84,6 +87,6 @@ int main() {
                 }
             }
         }
-        cout << "Case #" << t + 1 << ": " << ans << endl;
+        cout << "Case #" << t + 1 << ": " << (ans > 0 ? "YES" : "NO") << endl;
     }
 }

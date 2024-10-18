@@ -10,7 +10,7 @@ if test -n "$script_dir"
     if not contains $script_dir $PATH
         set -gx PATH $script_dir $PATH
     end
-
+    ulimit -s 1048576 # 1G stack limit
     echo "Activated OI env. `run`, `run-debug`, `run-with-aclib` now available."
 else
     echo "Not inside a Git repository."
