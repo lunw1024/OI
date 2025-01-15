@@ -3,6 +3,7 @@
 # Find the root git directory
 set root_dir (git rev-parse --show-toplevel)
 set script_dir $root_dir/scripts
+set -gx SNIPPETS_PATH (realpath (dirname (status --current-filename))/../snippets)
 
 # Check if script_dir is non-empty
 if test -n "$script_dir"
