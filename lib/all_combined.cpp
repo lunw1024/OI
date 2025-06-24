@@ -357,7 +357,7 @@ struct static_modint : internal::static_modint_base {
         _v = (unsigned int)(v % umod());
     }
 
-    unsigned int val() const { return _v; }
+    int val() const { return _v; }
 
     mint& operator++() {
         _v++;
@@ -474,7 +474,7 @@ template <int id> struct dynamic_modint : internal::modint_base {
         _v = (unsigned int)(v % mod());
     }
 
-    unsigned int val() const { return _v; }
+    int val() const { return _v; }
 
     mint& operator++() {
         _v++;
@@ -701,7 +701,7 @@ void butterfly_inv(std::vector<mint>& a) {
                     auto r = a[i + offset + p];
                     a[i + offset] = l + r;
                     a[i + offset + p] =
-                        (unsigned long long)(mint::mod() + l.val() - r.val()) *
+                        (unsigned long long)((unsigned int)(l.val() - r.val()) + mint::mod()) *
                         irot.val();
                     ;
                 }
@@ -793,8 +793,8 @@ std::vector<mint> convolution(std::vector<mint>&& a, std::vector<mint>&& b) {
     int z = (int)internal::bit_ceil((unsigned int)(n + m - 1));
     assert((mint::mod() - 1) % z == 0);
 
-    if (std::min(n, m) <= 60) return convolution_naive(a, b);
-    return internal::convolution_fft(a, b);
+    if (std::min(n, m) <= 60) return convolution_naive(std::move(a), std::move(b));
+    return internal::convolution_fft(std::move(a), std::move(b));
 }
 template <class mint, internal::is_static_modint_t<mint>* = nullptr>
 std::vector<mint> convolution(const std::vector<mint>& a,
@@ -917,8 +917,7 @@ struct dsu {
 
     int leader(int a) {
         assert(0 <= a && a < _n);
-        if (parent_or_size[a] < 0) return a;
-        return parent_or_size[a] = leader(parent_or_size[a]);
+        return _leader(a);
     }
 
     int size(int a) {
@@ -949,6 +948,11 @@ struct dsu {
   private:
     int _n;
     std::vector<int> parent_or_size;
+
+    int _leader(int a) {
+        if (parent_or_size[a] < 0) return a;
+        return parent_or_size[a] = _leader(parent_or_size[a]);
+    }
 };
 
 }  // namespace atcoder
@@ -1022,10 +1026,10 @@ struct lazy_segtree {
                   "e must work as S()");
     static_assert(
         std::is_convertible_v<decltype(mapping), std::function<S(F, S)>>,
-        "mapping must work as F(F, S)");
+        "mapping must work as S(F, S)");
     static_assert(
         std::is_convertible_v<decltype(composition), std::function<F(F, F)>>,
-        "compostiion must work as F(F, F)");
+        "composition must work as F(F, F)");
     static_assert(std::is_convertible_v<decltype(id), std::function<F()>>,
                   "id must work as F()");
 
@@ -2134,10 +2138,12 @@ std::vector<int> suffix_array(const std::string& s) {
 template <class T>
 std::vector<int> lcp_array(const std::vector<T>& s,
                            const std::vector<int>& sa) {
+    assert(s.size() == sa.size());
     int n = int(s.size());
     assert(n >= 1);
     std::vector<int> rnk(n);
     for (int i = 0; i < n; i++) {
+        assert(0 <= sa[i] && sa[i] < n);
         rnk[sa[i]] = i;
     }
     std::vector<int> lcp(n - 1);
