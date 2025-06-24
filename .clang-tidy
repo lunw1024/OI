@@ -1,0 +1,7 @@
+Checks: >
+  bugprone-*,
+  performance-*,
+  readability-implicit-bool-conversion,
+  readability-misleading-indentation,
+  readability-suspicious-call-argument,
+  modernize-use-emplace
