@@ -3,21 +3,33 @@ prefix = "head"
 body = """
 #include <iostream>
 #include <vector>
+#include <cassert>
 #include <algorithm>
 using namespace std;
-using ll = long long;
+using i64 = long long;
+using u64 = unsigned long long;
+using u32 = unsigned;
+using u128 = unsigned __int128;
 using pii = pair<int, int>;
 using vi = vector<int>;
 
-int main() {
-    ios::sync_with_stdio(false); cin.tie(0);
+void solve() {
     $0
+}
+
+int main() {
+    ios::sync_with_stdio(false); cin.tie(nullptr);
+    int T;
+    cin >> T;
+    while (T--) {
+        solve();
+    }
 }
 """
 
 [[snippets]]
-prefix = "BIT"
-body = """struct BIT {
+prefix = "Fenwick"
+body = """struct Fenwick {
     int n;
     vector<int> data;
     BIT(int n) {
@@ -44,8 +56,8 @@ body = """struct BIT {
 };"""
 
 [[snippets]]
-prefix = "UnionFindSet"
-body = """struct UnionFindSet{
+prefix = "DSU"
+body = """struct DSU {
     int n;
     vector<int> fa;
     UnionFindSet(int n) {
@@ -91,64 +103,15 @@ body = """struct Sieve {
 """
 
 [[snippets]]
-prefix = "Mat"
-body = """using mint = modint998244353;
-using Mat = vector<vector<mint>>;
-
-Mat operator*(const Mat a, const Mat b) {
-    int N1 = a.size(), N2 = b[0].size(), N3 = b.size();
-    Mat out(N1, vector<mint>(N2));
-    for (int i = 0; i < N1; i++) {
-        for (int j = 0; j < N2; j++) {
-            for (int k = 0; k < N3; k++) {
-                out[i][j] += a[i][k] * b[k][j];
-            }
-        }
-    }
-    return out;
-}
-
-Mat fast_exp(Mat a, int b) {
-    int N = a.size();
-    Mat out(N, vector<mint>(N));
-    for (int i = 0; i < N; i++)
-        out[i][i] = 1;
-    while (b > 0) {
-        if (b & 1) {
-            out = out * a;
-        }
-        b >>= 1;
-        a = a * a;
-    }
-    return out;
-}
-
-void print(Mat a) {
-    for (vector<mint> row : a) {
-        for (mint e : row) {
-            cout << e.val() << " ";
-        }
-        cout << endl;
-    }
-}
-"""
-
-[[snippets]]
 prefix = "fast_pow"
-body = """ll power(ll a, ll x) {
-    ll out = 1;
-    while (x > 0) {
-        if (x & 1) {
-            out = out * a % MOD;
+body = """template<class T>
+constexpr T power(T a, u64 b, T res = 1) {
+    for (; b != 0; b /= 2, a *= a) {
+        if (b & 1) {
+            res *= a;
         }
-        a = a * a % MOD;
-        x >>= 1;
     }
-    return out;
-}
-
-ll inv(ll x) {
-    return power(x, MOD - 2);
+    return res;
 }
 """
 
@@ -255,9 +218,9 @@ body = """struct Trie {
     }
 
     // custom visit function
-    ll count(string s) {
+    i64 count(string s) {
         int p = 0;
-        ll out = 0;
+        i64 out = 0;
         for (char c : s) {
             if (children[p][c - 'a'] <= 0) {
                 return out;
@@ -270,4 +233,184 @@ body = """struct Trie {
     }
     
 };
+"""
+
+[[snippets]]
+prefix = "ModInt"
+body = """template<class T>
+constexpr T power(T a, u64 b, T res = 1) {
+    for (; b != 0; b /= 2, a *= a) {
+        if (b & 1) {
+            res *= a;
+        }
+    }
+    return res;
+}
+template<u32 P>
+constexpr u32 mulMod(u32 a, u32 b) {
+    return u64(a) * b % P;
+}
+ 
+template<u64 P>
+constexpr u64 mulMod(u64 a, u64 b) {
+    u64 res = a * b - u64(1.L * a * b / P - 0.5L) * P;
+    res %= P;
+    return res;
+}
+ 
+constexpr i64 safeMod(i64 x, i64 m) {
+    x %= m;
+    if (x < 0) {
+        x += m;
+    }
+    return x;
+}
+template<unsigned_integral U, U P>
+struct ModIntBase {
+public:
+    constexpr ModIntBase() : x(0) {}
+    template<unsigned_integral T>
+    constexpr ModIntBase(T x_) : x(x_ % mod()) {}
+    template<signed_integral T>
+    constexpr ModIntBase(T x_) {
+        using S = make_signed_t<U>;
+        S v = x_ % S(mod());
+        if (v < 0) {
+            v += mod();
+        }
+        x = v;
+    }
+    
+    constexpr static U mod() {
+        return P;
+    }
+    
+    constexpr U val() const {
+        return x;
+    }
+    
+    constexpr ModIntBase operator-() const {
+        ModIntBase res;
+        res.x = (x == 0 ? 0 : mod() - x);
+        return res;
+    }
+    
+    constexpr ModIntBase inv() const {
+        return power(*this, mod() - 2);
+    }
+    
+    constexpr ModIntBase &operator*=(const ModIntBase &rhs) & {
+        x = mulMod<mod()>(x, rhs.val());
+        return *this;
+    }
+    constexpr ModIntBase &operator+=(const ModIntBase &rhs) & {
+        x += rhs.val();
+        if (x >= mod()) {
+            x -= mod();
+        }
+        return *this;
+    }
+    constexpr ModIntBase &operator-=(const ModIntBase &rhs) & {
+        x -= rhs.val();
+        if (x >= mod()) {
+            x += mod();
+        }
+        return *this;
+    }
+    constexpr ModIntBase &operator/=(const ModIntBase &rhs) & {
+        return *this *= rhs.inv();
+    }
+    
+    friend constexpr ModIntBase operator*(ModIntBase lhs, const ModIntBase &rhs) {
+        lhs *= rhs;
+        return lhs;
+    }
+    friend constexpr ModIntBase operator+(ModIntBase lhs, const ModIntBase &rhs) {
+        lhs += rhs;
+        return lhs;
+    }
+    friend constexpr ModIntBase operator-(ModIntBase lhs, const ModIntBase &rhs) {
+        lhs -= rhs;
+        return lhs;
+    }
+    friend constexpr ModIntBase operator/(ModIntBase lhs, const ModIntBase &rhs) {
+        lhs /= rhs;
+        return lhs;
+    }
+    
+    friend constexpr istream &operator>>(istream &is, ModIntBase &a) {
+        i64 i;
+        is >> i;
+        a = i;
+        return is;
+    }
+    friend constexpr ostream &operator<<(ostream &os, const ModIntBase &a) {
+        return os << a.val();
+    }
+    
+    friend constexpr bool operator==(const ModIntBase &lhs, const ModIntBase &rhs) {
+        return lhs.val() == rhs.val();
+    }
+    friend constexpr strong_ordering operator<=>(const ModIntBase &lhs, const ModIntBase &rhs) {
+        return lhs.val() <=> rhs.val();
+    }
+    
+private:
+    U x;
+};
+ 
+template<u32 P>
+using ModInt = ModIntBase<u32, P>;
+template<u64 P>
+using ModInt64 = ModIntBase<u64, P>;
+"""
+
+[[snippets]]
+prefix = "Combo"
+body = """using Z = ModInt<$0>
+struct Comb {
+    int n;
+    vector<Z> _fac;
+    vector<Z> _invfac;
+    vector<Z> _inv;
+    
+    Comb() : n{0}, _fac{1}, _invfac{1}, _inv{0} {}
+    Comb(int n) : Comb() {
+        init(n);
+    }
+    
+    void init(int m) {
+        if (m <= n) return;
+        _fac.resize(m + 1);
+        _invfac.resize(m + 1);
+        _inv.resize(m + 1);
+        
+        for (int i = n + 1; i <= m; i++) {
+            _fac[i] = _fac[i - 1] * i;
+        }
+        _invfac[m] = _fac[m].inv();
+        for (int i = m; i > n; i--) {
+            _invfac[i - 1] = _invfac[i] * i;
+            _inv[i] = _invfac[i] * _fac[i - 1];
+        }
+        n = m;
+    }
+    
+    Z fac(int m) {
+        if (m > n) init(2 * m);
+        return _fac[m];
+    }
+    Z invfac(int m) {
+        if (m > n) init(2 * m);
+        return _invfac[m];
+    }
+    Z inv(int m) {
+        if (m > n) init(2 * m);
+        return _inv[m];
+    }
+    Z binom(int n, int m) {
+        if (n < m || m < 0) return 0;
+        return fac(n) * invfac(m) * invfac(n - m);
+    }
+} comb;
 """
