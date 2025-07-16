@@ -62,51 +62,71 @@ body = """void dfs(int u, vector<bool> vis, vector<vector<int>>& G) {
 
 [[snippets]]
 prefix = "Fenwick"
-body = """struct Fenwick {
+body = """template<class T>
+struct Fenwick {
     int n;
-    vector<int> data;
-    BIT(int n) {
+    vector<T> data;
+    Fenwick(int n) {
         this->n = n;
-        data.resize(n);
+        data.assign(n, T());
     }
     inline int lowbit(int x) {
         return x & -x;
     }
-    int query(int x) {
-        int out = 0;
-        while (x > 0) {
-            out += data[x];
-            x -= lowbit(x);
+    T sum(int idx) {
+        T out = T();
+        while (idx > 0) {
+            out += data[idx];
+            idx -= lowbit(idx);
         }
         return out;
     }
-    void add(int x, int k) {
-        while (x < n) {
-            data[x] += k;
-            x += lowbit(x);
+    T range_sum(int l, int r) {
+        // [l, r]
+        return sum(r) - sum(l - 1);
+    }
+    void add(int idx, T v) {
+        while (idx < n) {
+            data[idx] += v;
+            idx += lowbit(idx);
         }
     }
+
 };"""
 
 [[snippets]]
 prefix = "DSU"
 body = """struct DSU {
     int n;
-    vector<int> fa;
-    UnionFindSet(int n) {
+    vector<int> fa, sz;
+    DSU(int n) {
         this->n = n;
         fa.resize(n);
-        for (int i = 0; i < n; i++)
+        for (int i = 0; i < n; i++) {
             fa[i] = i;
+        }
+        sz.assign(n, 1);
     }
 
     int find(int x) {
         return fa[x] == x ? x : fa[x] = find(fa[x]);
     }
 
-    void merge(int x, int y) {
+    bool same(int x, int y) {
+        return find(x) == find(y);
+    }
+
+    bool merge(int x, int y) {
         x = find(x), y = find(y);
-        fa[x] = y;
+        if (x == y) {
+            return false;
+        }
+        fa[y] = x;
+        sz[x] += sz[y];
+    }
+
+    int size(int x) {
+        return sz[find(x)];
     }
 };
 """
@@ -234,7 +254,7 @@ body = """struct Trie {
         children.emplace_back();
     }
 
-    void insert(string s) {
+    void insert(const string& s) {
         int p = 0;
         for (char c : s) {
             // cerr << c << ", " << p << ", " << int(c - 'a') << endl;
@@ -251,7 +271,7 @@ body = """struct Trie {
     }
 
     // custom visit function
-    i64 count(string s) {
+    i64 count(const string& s) {
         int p = 0;
         i64 out = 0;
         for (char c : s) {
@@ -446,4 +466,26 @@ struct Comb {
         return fac(n) * invfac(m) * invfac(n - m);
     }
 } comb;
+"""
+
+[[snippets]]
+prefix = "z_function"
+body = """vector<int> z_function(string s) {
+    int n = s.size();
+    vector<int> z(n);
+    int l = 0, r = 0;
+    for (int i = 1; i < n; i++) {
+        if (i < r) {
+            z[i] = min(r - i, z[i - l]);
+        }
+        while (i + z[i] < n && s[z[i]] == s[i + z[i]]) {
+            z[i]++;
+        }
+        if (i + z[i] > r) {
+            l = i;
+            r = i + z[i];
+        }
+    }
+    return z;
+}
 """
